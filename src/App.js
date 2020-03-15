@@ -1,24 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Input from "./Components/Input";
+import PasswordButton from "./Components/Button";
+import "./App.css";
+import {randomizeChars} from "./helper/helper";
 
 function App() {
+  const [password, setPassword] = useState("Password will appear here");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Random Password Generator</h1>
+      <Input label={password} />
+      <PasswordButton onClick={() => setPassword(randomizeChars)} />
     </div>
   );
 }
