@@ -14,7 +14,7 @@ export default function PasswordButton(props) {
   return (
     <div>
       <Button onClick={props.onClick} size="medium" className={classes.margin}>
-        Generate a random password
+       {props.title}
       </Button>
     </div>
   );
