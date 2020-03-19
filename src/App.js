@@ -7,18 +7,27 @@ import "./App.css";
 function App() {
   const [password, setPassword] = useState("Password will appear here");
 
-  let replaceComma = password.toString().replace(/,/g, "");
+  const copyPassword = password => {
+    if (password !== "Password will appear here")
+      return password.toString().replace(/,/g, "");
+  };
+
   return (
     <div className="App">
-      <h1>Random Password Generator</h1>
-      <Input label={password} />
-      <PasswordButton
-        title="Generate a random password"
-        onClick={() => setPassword(randomizeChars())}
+      <h1 style={{ textAlign: "center", marginBottom: "50px", color: "white" }}>
+        Safe Pass
+      </h1>
+      <Input
+        label={password}
+        save={() => {
+          copyToClipboard(copyPassword(password));
+        }}
       />
       <PasswordButton
-        title="Copy"
-        onClick={() => copyToClipboard(replaceComma)}
+        title="Generate me"
+        onClick={() => {
+          setPassword(randomizeChars());
+        }}
       />
     </div>
   );

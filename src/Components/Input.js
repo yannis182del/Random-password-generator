@@ -1,23 +1,39 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
+import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
-const useStyles = makeStyles(theme => ({
+const styles = {
   root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: '30%',
-    },
+    width: "350px",
+    boxShadow: "0 8px 3px -7px rgba(0, 0, 0, 0.35)"
   }
-}));
+};
 
-const Input = (props) => {
-  const classes = useStyles();
+const Input = props => {
+  const { classes } = props;
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <TextField className={classes.input} label={props.label} variant="filled" disabled />
-    </form>
+    <TextField
+      className={classes.root}
+      InputProps={{
+        readOnly: true,
+        className: classes.input,
+        endAdornment: (
+          <InputAdornment>
+            <IconButton>
+              <FileCopyOutlinedIcon onClick={props.save} />
+            </IconButton>
+          </InputAdornment>
+        )
+      }}
+      label={props.label}
+      id="outlined-disabled"
+      variant="outlined"
+      disabled
+    />
   );
 };
 
-export default Input;
+export default withStyles(styles)(Input);
