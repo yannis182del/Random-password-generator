@@ -18,7 +18,7 @@ function App() {
         Safe Pass
       </h1>
       <Input
-        label={password}
+        label={password.toString().replace(/,/g, "")}
         save={() => {
           copyToClipboard(copyPassword(password));
         }}
