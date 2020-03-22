@@ -7,11 +7,6 @@ import "./App.css";
 function App() {
   const [password, setPassword] = useState("Password will appear here");
 
-  const copyPassword = password => {
-    if (password !== "Password will appear here")
-      return password.toString().replace(/,/g, "");
-  };
-
   return (
     <div className="App">
       <h1 style={{ textAlign: "center", marginBottom: "50px", color: "white" }}>
@@ -20,7 +15,7 @@ function App() {
       <Input
         label={password.toString().replace(/,/g, "")}
         save={() => {
-          copyToClipboard(copyPassword(password));
+          copyToClipboard(password.toString().replace(/,/g, ""));
         }}
       />
       <PasswordButton
